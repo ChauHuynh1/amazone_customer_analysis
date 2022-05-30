@@ -30,7 +30,7 @@ def scrape(source_url, soup):  # Takes the driver and the subdomain for concats 
 def write_to_csv(list_input):
     # The scraped info will be written to a CSV here.
     try:
-        with open("allBooks.csv", "a") as fopen:  # Open the csv file.
+        with open("Data/allBooks.csv", "a") as fopen:  # Open the csv file.
             csv_writer = csv.writer(fopen)
             csv_writer.writerow(list_input)
     except:
@@ -49,6 +49,7 @@ def browse_and_scrape(seed_url, page_number=1):
         html_text = requests.get(formatted_url).text
         # Prepare the soup
         soup = BeautifulSoup(html_text, "html.parser")
+        print(f"Now Scraping - {formatted_url}")
 
         # This if clause stops the script when it hits an empty page
         if soup.find("li", class_="next") != None:
